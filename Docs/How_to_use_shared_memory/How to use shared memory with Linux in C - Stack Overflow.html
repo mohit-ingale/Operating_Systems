@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>How to use shared memory with Linux in C - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How to use shared memory with Linux in C">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I have a bit of an issue with one of my projects. 
+
+I have been trying to find a well documented example of using shared memory with fork() but to no success.
+
+Basically the scenario is that when the ">
+    <meta property="og:url" content="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c">
+    <link rel="canonical" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c">
+
+    
+    
+    <script type="text/javascript" async="" src="http://engine.adzerk.net/ados?t=1476978367134&amp;request={%22Placements%22:[{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk536639941%22,%22AT%22:4,%22Z%22:[43]},{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk1914355283%22,%22AT%22:4,%22Z%22:[44]},{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk1331832164%22,%22ATA%22:[5,17,2221],%22Z%22:[45]}],%22Keywords%22:%22c%2Clinux%2Cfork%2Cshared-memory%22,%22Referrer%22:%22https%3A%2F%2Fwww.google.co.in%2F%22,%22IsAsync%22:true}"></script><script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/quant.js"></script><script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/beacon.js"></script><script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/ados.js"></script><script src="./How to use shared memory with Linux in C - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./How to use shared memory with Linux in C - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./How to use shared memory with Linux in C - Stack Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;How to use shared memory with Linux in C&#39;" href="http://stackoverflow.com/feeds/question/5656530">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:5656530});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '5656530');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1476978366,"routeName":"Questions/Show","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableInsertDocLinkDialog":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"a62081a7ee6d06698dcea80d0900029e","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"ab":{"devstory_onboarding_exp":{"v":"a","g":1},"anon_vote_popup":{"v":"make_signup_a_link","g":1}}},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableNewLinkInsertDialog":true},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"f114512c72a4","js/moderator.en.js":"8ed608c43f8b","js/full-anon.en.js":"f0aac648f878","js/full.en.js":"f41a058f25a1","js/wmd.en.js":"c460ea04c113","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"29ca548cffd4","js/help.en.js":"a2f92aacc060","js/tageditor.en.js":"9c6df10dabc4","js/tageditornew.en.js":"d7ced0e6dcaf","js/inline-tag-editing.en.js":"9298fc701b8e","js/revisions.en.js":"47de10a8358f","js/review.en.js":"a530c87d7818","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"782e46dfcee5","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"989e170716bf","js/keyboard-shortcuts.en.js":"f838a3d5d52f","js/external-editor.en.js":"5441bf1fb1b5","js/external-editor.en.js":"5441bf1fb1b5","js/snippet-javascript.en.js":"bb9cbf50086e","js/snippet-javascript-codemirror.en.js":"c23974ac964c"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+<script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/full-anon.en.js"></script><script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/prettify-full.en.js"></script><script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/external-editor.en.js"></script><script type="text/javascript" src="./How to use shared memory with Linux in C - Stack Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="./How to use shared memory with Linux in C - Stack Overflow_files/adFeedback.css"></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+            <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3><a href="http://stackoverflow.com/">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li>
+                            <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f5656530%2fhow-to-use-shared-memory-with-linux-in-c" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+        </div>
+
+        <div class="network-items">
+                <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 162 Stack Exchange sites">
+                    <span class="hidden-text">Stack Exchange</span>
+                </a>
+
+    <a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" class="topbar-icon icon-achievements yes-hover js-achievements-button" data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f5656530%2fhow-to-use-shared-memory-with-linux-in-c" class="login-link">log in</a>
+
+                            <a href="http://stackoverflow.com/tour">tour</a>
+        <a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" class="icon-help js-help-button" title="Help Center and other resources">
+            help
+            <span class="triangle"></span>
+        </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://business.stackoverflow.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+                                            </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="Search Q&amp;A" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                            <li class="youarehere">
+        <a id="nav-questions" href="http://stackoverflow.com/questions" class="js-gps-track" data-gps-track="top_nav.click({is_current:true, location:3, destination:1})">
+        Questions
+        </a>
+    </li>
+
+    <li>
+        <a id="nav-jobs" href="http://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:6})">
+        Jobs
+        </a>
+    </li>
+                            <li>
+        <a id="nav-docs" href="http://stackoverflow.com/documentation" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:7})">
+        Documentation
+        </a>
+    </li>
+                            <li>
+        <a id="nav-tags" href="http://stackoverflow.com/tags" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:2})">
+        Tags
+        </a>
+    </li>
+
+                            <li>
+        <a id="nav-users" href="http://stackoverflow.com/users" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:3})">
+        Users
+        </a>
+    </li>
+
+                            <li>
+        <a id="nav-badges" href="http://stackoverflow.com/help/badges" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:4})">
+        Badges
+        </a>
+    </li>
+
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+
+    <div id="herobox" class="alternate">
+        <div class="test"></div>
+            <div id="close">
+                <a title="click to minimize"><span>x</span> Dismiss</a>
+            </div>
+        <div class="content">
+            <b>Join the Stack Overflow Community</b>
+            <div class="separator"></div>
+            <div class="blurb">
+                Stack Overflow is a community of 6.2 million programmers, just like you, helping each other.
+                    <br>
+Join them; it only takes a minute:                    <br>
+            </div>
+            <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f5656530%2fhow-to-use-shared-memory-with-linux-in-c" id="tell-me-more" class="button">Sign up</a>
+        </div>
+    </div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("question-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;;
+        } else if ($("body").hasClass("home-page")) {
+            location = 3;;
+        }
+
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        $('#herobox #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $("#herobox").fadeOut("fast", function () {
+                        $("#herobox").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script>			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c" class="question-hyperlink">How to use shared memory with Linux in C</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="5656530" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk536639941",4).setZone(43); });
+            </script>
+                <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="5656530">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">37</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#">favorite</a>
+        <div class="favoritecount"><b>23</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I have a bit of an issue with one of my projects. </p>
+
+<p>I have been trying to find a well documented example of using shared memory with fork() but to no success.</p>
+
+<p>Basically the scenario is that when the user starts the program, I need to store two values in shared memory: current_path which is a char* and a file_name which is also char*.</p>
+
+<p>Depending on the command arguments, a new process is kicked off with fork() and that process needs to read and modify the current_path variable stored in shared memory while the file_name variable is read only.</p>
+
+<p>Is there a good tutorial on shared memory with example code (if possible) that you can direct me to?</p>
+
+<p>Thanks,
+bleepzter</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/c" class="post-tag js-gps-track" title="show questions tagged &#39;c&#39;" rel="tag">c</a> <a href="http://stackoverflow.com/questions/tagged/linux" class="post-tag js-gps-track" title="show questions tagged &#39;linux&#39;" rel="tag">linux</a> <a href="http://stackoverflow.com/questions/tagged/fork" class="post-tag js-gps-track" title="show questions tagged &#39;fork&#39;" rel="tag">fork</a> <a href="http://stackoverflow.com/questions/tagged/shared-memory" class="post-tag js-gps-track" title="show questions tagged &#39;shared-memory&#39;" rel="tag">shared-memory</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/5656530" title="short permalink to this question" class="short-link" id="link-post-5656530">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/5656530/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2011-04-13 22:41:03Z" class="relativetime">Apr 13 '11 at 22:41</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/499636/bleepzter"><div class="gravatar-wrapper-32"><img src="./How to use shared memory with Linux in C - Stack Overflow_files/f0h8T.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/499636/bleepzter">bleepzter</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,710</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="25 silver badges"><span class="badge2"></span><span class="badgecount">25</span></span><span title="55 bronze badges"><span class="badge3"></span><span class="badgecount">55</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-5656530" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-32547913" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You may consider using threads instead of processes. Then the whole memory is shared with no further tricks.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1310267/elomage" title="1,748 reputation" class="comment-user">elomage</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment32547913_5656530"><span title="2014-02-04 12:22:29Z" class="relativetime-clean">Feb 4 '14 at 12:22</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-5656530" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								6 Answers
+                                <span style="display:none;" itemprop="answerCount">6</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="5656561"></a>
+<div id="answer-5656561" class="answer accepted-answer" data-answerid="5656561" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="5656561">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">41</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The man page for <code>shmget</code> has pretty much everything you need to get started.</p>
+
+<p>If not, <a href="http://www.cs.cf.ac.uk/Dave/C/node27.html">here</a> you have an explanation with examples.</p>
+
+<p>The <code>shmget</code> approach is kinda outdated, though. Using <code>mmap</code> accompannying other facilities is a smarter approach.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/5656561" title="short permalink to this answer" class="short-link" id="link-post-5656561">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/5656561/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/5656561/revisions" title="show all edits to this post">edited <span title="2014-07-27 02:21:02Z" class="relativetime">Jul 27 '14 at 2:21</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-04-13 22:43:38Z" class="relativetime">Apr 13 '11 at 22:43</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/469300/slezica"><div class="gravatar-wrapper-32"><img src="./How to use shared memory with Linux in C - Stack Overflow_files/51d63ecef3a78c2533a11256627f3cb0" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/469300/slezica">slezica</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 27,433" dir="ltr">27.4k</span><span title="11 gold badges"><span class="badge1"></span><span class="badgecount">11</span></span><span title="54 silver badges"><span class="badge2"></span><span class="badgecount">54</span></span><span title="104 bronze badges"><span class="badge3"></span><span class="badgecount">104</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-5656561" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-6452605" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">9</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This is why Linux is so frustrating for inexperienced devs. The man page doesn't explain how to actually use it, and there is no sample code. :(</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/499636/bleepzter" title="3,710 reputation" class="comment-user owner">bleepzter</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment6452605_5656561"><span title="2011-04-13 22:46:31Z" class="relativetime-clean">Apr 13 '11 at 22:46</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-6452657" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Haha I know what you mean, but it's actually because we're not used to reading manpages. When I learned to read them and got used to them, they became even more useful than lousy tutorials with particular demonstrations. I remember I got a 10/10 in my Operating Systems course using nothing but manpages for reference during the exam.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/469300/slezica" title="27,433 reputation" class="comment-user">slezica</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment6452657_5656561"><span title="2011-04-13 22:51:31Z" class="relativetime-clean">Apr 13 '11 at 22:51</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-6453023" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">13</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy"><code>shmget</code> is a really old-fashioned, and some would say deprecated, way to do shared memory... Better to use <code>mmap</code> and <code>shm_open</code>, plain files, or simply <code>MAP_ANONYMOUS</code>.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/379897/r" title="127,283 reputation" class="comment-user">R..</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment6453023_5656561"><span title="2011-04-13 23:29:27Z" class="relativetime-clean">Apr 13 '11 at 23:29</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-6455821" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">SysV shared memory (shmget) is extremely crufty and unnecessary, as mmap() works properly on Linux.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/13724/markr" title="46,196 reputation" class="comment-user">MarkR</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment6455821_5656561"><span title="2011-04-14 05:39:59Z" class="relativetime-clean">Apr 14 '11 at 5:39</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-6470827" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Mark @R You guys are right, I'll point that out in the answer for future reference.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/469300/slezica" title="27,433 reputation" class="comment-user">slezica</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment6470827_5656561"><span title="2011-04-14 21:16:53Z" class="relativetime-clean">Apr 14 '11 at 21:16</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-5656561" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1914355283",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1914355283"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo0OTI2MjUsImNoIjoxMTc4LCJjayI6e30sImNyIjoxNzMyODY3LCJkaSI6IjdhNjZmYzdkZTk4ODQ5YmU5OWJhODliNTYyOTAzZjU5IiwiZG0iOjEsImZjIjoyMDU3MTIyLCJmbCI6MjUwNjIwNCwiaXAiOiIxMDYuMC4zNi4xMTciLCJrdyI6ImMsbGludXgsZm9yayxzaGFyZWQtbWVtb3J5IiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNjA0LCJydCI6MiwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY28uaW4vIiwic3QiOjgyNzcsInVrIjoidWUxLTc3NDI4ZmEwMDdkNzRlNTZhZGIxMmIwZjVhMDVhOTRiIiwiem4iOjQ0LCJ0cyI6MTQ3Njk3ODM2NzkxMSwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMTkxNDM1NTI4MyIsInVyIjoiaHR0cDovL3MudGsvc3RvcnkifQ&amp;s=yhqaru8RTV7A-C_oljp_ihI85GU" rel="nofollow" target="_blank" title=""><img src="./How to use shared memory with Linux in C - Stack Overflow_files/94e5e1353b6a472ba6ea2d66f5fab5d0.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="http://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo0OTI2MjUsImNoIjoxMTc4LCJjayI6e30sImNyIjoxNzMyODY3LCJkaSI6IjdhNjZmYzdkZTk4ODQ5YmU5OWJhODliNTYyOTAzZjU5IiwiZG0iOjEsImZjIjoyMDU3MTIyLCJmbCI6MjUwNjIwNCwiaXAiOiIxMDYuMC4zNi4xMTciLCJrdyI6ImMsbGludXgsZm9yayxzaGFyZWQtbWVtb3J5IiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNjA0LCJydCI6MiwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY28uaW4vIiwic3QiOjgyNzcsInVrIjoidWUxLTc3NDI4ZmEwMDdkNzRlNTZhZGIxMmIwZjVhMDVhOTRiIiwiem4iOjQ0LCJ0cyI6MTQ3Njk3ODM2NzkxMiwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMTkxNDM1NTI4MyIsImZxIjowfQ&amp;s=hfn0fAE3_fuiHMrKCgFng7yXBEE"></div>
+  
+<a name="22557543"></a>
+<div id="answer-22557543" class="answer" data-answerid="22557543" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="22557543">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">15</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here is an example for shared memory. This might help :</p>
+
+<pre class="lang-c prettyprint prettyprinted"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdlib.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/types.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/ipc.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/shm.h&gt;</span><span class="pln">
+
+</span><span class="com">#define</span><span class="pln"> SHM_SIZE </span><span class="lit">1024</span><span class="pln">  </span><span class="com">/* make it a 1K shared memory segment */</span><span class="pln">
+
+</span><span class="typ">int</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> argc</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">argv</span><span class="pun">[])</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">key_t</span><span class="pln"> key</span><span class="pun">;</span><span class="pln">
+    </span><span class="typ">int</span><span class="pln"> shmid</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">data</span><span class="pun">;</span><span class="pln">
+    </span><span class="typ">int</span><span class="pln"> mode</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">argc </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        fprintf</span><span class="pun">(</span><span class="pln">stderr</span><span class="pun">,</span><span class="pln"> </span><span class="str">"usage: shmdemo [data_to_write]\n"</span><span class="pun">);</span><span class="pln">
+        exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/* make the key: */</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">((</span><span class="pln">key </span><span class="pun">=</span><span class="pln"> ftok</span><span class="pun">(</span><span class="str">"hello.txt"</span><span class="pun">,</span><span class="pln"> </span><span class="str">'R'</span><span class="pun">))</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="com">/*Here the file must exist */</span><span class="pln"> 
+</span><span class="pun">{</span><span class="pln">
+        perror</span><span class="pun">(</span><span class="str">"ftok"</span><span class="pun">);</span><span class="pln">
+        exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/*  create the segment: */</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">((</span><span class="pln">shmid </span><span class="pun">=</span><span class="pln"> shmget</span><span class="pun">(</span><span class="pln">key</span><span class="pun">,</span><span class="pln"> SHM_SIZE</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0644</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> IPC_CREAT</span><span class="pun">))</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        perror</span><span class="pun">(</span><span class="str">"shmget"</span><span class="pun">);</span><span class="pln">
+        exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/* attach to the segment to get a pointer to it: */</span><span class="pln">
+    data </span><span class="pun">=</span><span class="pln"> shmat</span><span class="pun">(</span><span class="pln">shmid</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*)</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">data </span><span class="pun">==</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*)(-</span><span class="lit">1</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        perror</span><span class="pun">(</span><span class="str">"shmat"</span><span class="pun">);</span><span class="pln">
+        exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/* read or modify the segment, based on the command line: */</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">argc </span><span class="pun">==</span><span class="pln"> </span><span class="lit">2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        printf</span><span class="pun">(</span><span class="str">"writing to segment: \"%s\"\n"</span><span class="pun">,</span><span class="pln"> argv</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span><span class="pln">
+        strncpy</span><span class="pun">(</span><span class="pln">data</span><span class="pun">,</span><span class="pln"> argv</span><span class="pun">[</span><span class="lit">1</span><span class="pun">],</span><span class="pln"> SHM_SIZE</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln">
+        printf</span><span class="pun">(</span><span class="str">"segment contains: \"%s\"\n"</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">);</span><span class="pln">
+
+    </span><span class="com">/* detach from the segment: */</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">shmdt</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        perror</span><span class="pun">(</span><span class="str">"shmdt"</span><span class="pun">);</span><span class="pln">
+        exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Steps :
+1- Use ftok to convert a pathname and a project identifier to a System V IPC key</p>
+
+<p>2- Use shmget which allocates a shared memory segment</p>
+
+<p>3- Use shmat to  attache the shared memory segment identified by shmid to the address space of the calling process</p>
+
+<p>4- Do the operations on the memory area </p>
+
+<p>5- Detach using shmdt</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/22557543" title="short permalink to this answer" class="short-link" id="link-post-22557543">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/22557543/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/22557543/revisions" title="show all edits to this post">edited <span title="2014-10-06 09:36:58Z" class="relativetime">Oct 6 '14 at 9:36</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-03-21 11:28:47Z" class="relativetime">Mar 21 '14 at 11:28</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2261492/mayank"><div class="gravatar-wrapper-32"><img src="./How to use shared memory with Linux in C - Stack Overflow_files/51d5547fb6cd7bdf0ca5cb2213943f8f" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2261492/mayank">Mayank</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">846</span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="9 bronze badges"><span class="badge3"></span><span class="badgecount">9</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-22557543" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-22557543" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="5656593"></a>
+<div id="answer-5656593" class="answer" data-answerid="5656593" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="5656593">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">10</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><a href="http://web.archive.org/web/20150524005553/http://advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf" rel="nofollow">Chapter 5</a> of the book "Advanced Linux Programming" has a nice introduction to IPC with Linux <a href="http://web.archive.org/web/20150511104538/http://www.advancedlinuxprogramming.com/alp-folder/" rel="nofollow">(entire book as pdf)</a></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/5656593" title="short permalink to this answer" class="short-link" id="link-post-5656593">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/5656593/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/5656593/revisions" title="show all edits to this post">edited <span title="2016-02-12 03:00:39Z" class="relativetime">Feb 12 at 3:00</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/309483/janus-troelsen"><div class="gravatar-wrapper-32"><img src="./How to use shared memory with Linux in C - Stack Overflow_files/d797538504a367f277d19bd8369e9a19" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/309483/janus-troelsen">Janus Troelsen</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">9,877</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="69 silver badges"><span class="badge2"></span><span class="badgecount">69</span></span><span title="117 bronze badges"><span class="badge3"></span><span class="badgecount">117</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-04-13 22:47:30Z" class="relativetime">Apr 13 '11 at 22:47</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/522432/sl0815"><div class="gravatar-wrapper-32"><img src="./How to use shared memory with Linux in C - Stack Overflow_files/40531c23f76c2232e4cdd91347a95400" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/522432/sl0815">sl0815</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">463</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="20 bronze badges"><span class="badge3"></span><span class="badgecount">20</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-5656593" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-12000705" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">A good summary, but it lacks the newer shared stuff mentioned in the other answer.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/149482/matt-joiner" title="41,676 reputation" class="comment-user">Matt Joiner</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment12000705_5656593"><span title="2012-02-28 12:43:52Z" class="relativetime-clean">Feb 28 '12 at 12:43</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-50682922" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">While this link may answer the question, it is better to include the essential parts of the answer here and provide the link for reference.  Link-only answers can become invalid if the linked page changes.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1607832/missimer" title="3,187 reputation" class="comment-user">missimer</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment50682922_5656593"><span title="2015-07-10 20:39:40Z" class="relativetime-clean">Jul 10 '15 at 20:39</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-55051935" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The link is dead.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/4246963/aleksandr-kovalev" title="1,111 reputation" class="comment-user">Aleksandr Kovalev</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment55051935_5656593"><span title="2015-11-10 20:26:58Z" class="relativetime-clean">Nov 10 '15 at 20:26</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-58415127" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@AleksandrKovalev The link has been fixed.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/309483/janus-troelsen" title="9,877 reputation" class="comment-user">Janus Troelsen</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#comment58415127_5656593"><span title="2016-02-12 03:07:32Z" class="relativetime-clean">Feb 12 at 3:07</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-5656593" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="21552326"></a>
+<div id="answer-21552326" class="answer" data-answerid="21552326" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="21552326">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>These are includes for using shared memory</p>
+
+<pre class="lang-c prettyprint prettyprinted"><code><span class="com">#include</span><span class="str">&lt;sys/ipc.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="str">&lt;sys/shm.h&gt;</span><span class="pln">
+
+</span><span class="typ">int</span><span class="pln"> shmid</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">int</span><span class="pln"> shmkey </span><span class="pun">=</span><span class="pln"> </span><span class="lit">12222</span><span class="pun">;</span><span class="com">//u can choose it as your choice</span><span class="pln">
+
+</span><span class="typ">int</span><span class="pln"> main</span><span class="pun">()</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+  </span><span class="com">//now your main starting</span><span class="pln">
+  shmid </span><span class="pun">=</span><span class="pln"> shmget</span><span class="pun">(</span><span class="pln">shmkey</span><span class="pun">,</span><span class="lit">1024</span><span class="pun">,</span><span class="pln">IPC_CREAT</span><span class="pun">);</span><span class="pln">
+  </span><span class="com">// 1024 = your preferred size for share memory</span><span class="pln">
+  </span><span class="com">// IPC_CREAT  its a flag to create shared memory</span><span class="pln">
+
+  </span><span class="com">//now attach a memory to this share memory</span><span class="pln">
+  </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">shmpointer </span><span class="pun">=</span><span class="pln"> shmat</span><span class="pun">(</span><span class="pln">shmid</span><span class="pun">,</span><span class="pln">NULL</span><span class="pun">);</span><span class="pln">
+
+  </span><span class="com">//do your work with the shared memory </span><span class="pln">
+  </span><span class="com">//read -write will be done with the *shmppointer</span><span class="pln">
+  </span><span class="com">//after your work is done deattach the pointer</span><span class="pln">
+
+  shmdt</span><span class="pun">(&amp;</span><span class="pln">shmpointer</span><span class="pun">,</span><span class="pln"> NULL</span><span class="pun">);</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/21552326" title="short permalink to this answer" class="short-link" id="link-post-21552326">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/21552326/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/21552326/revisions" title="show all edits to this post">edited <span title="2014-02-04 12:21:07Z" class="relativetime">Feb 4 '14 at 12:21</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/635608/mat"><div class="gravatar-wrapper-32"><img src="./How to use shared memory with Linux in C - Stack Overflow_files/oIJia.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/635608/mat">Mat</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 135,529" dir="ltr">136k</span><span title="21 gold badges"><span class="badge1"></span><span class="badgecount">21</span></span><span title="235 silver badges"><span class="badge2"></span><span class="badgecount">235</span></span><span title="274 bronze badges"><span class="badge3"></span><span class="badgecount">274</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-02-04 12:16:42Z" class="relativetime">Feb 4 '14 at 12:16</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/3260367/bharat"><div class="gravatar-wrapper-32"><img src="./How to use shared memory with Linux in C - Stack Overflow_files/199f58afff5bec22ddf1ec892e65c938" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/3260367/bharat">Bharat</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">55</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-21552326" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-21552326" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="36244366"></a>
+<div id="answer-36244366" class="answer" data-answerid="36244366" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="36244366">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>try this code sample, I tested it, source: <a href="http://www.makelinux.net/alp/035" rel="nofollow">http://www.makelinux.net/alp/035</a></p>
+
+<pre class="lang-c prettyprint prettyprinted"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span><span class="pln"> 
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/shm.h&gt;</span><span class="pln"> 
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/stat.h&gt;</span><span class="pln"> 
+
+</span><span class="typ">int</span><span class="pln"> main </span><span class="pun">()</span><span class="pln"> 
+</span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">int</span><span class="pln"> segment_id</span><span class="pun">;</span><span class="pln"> 
+  </span><span class="kwd">char</span><span class="pun">*</span><span class="pln"> shared_memory</span><span class="pun">;</span><span class="pln"> 
+  </span><span class="kwd">struct</span><span class="pln"> shmid_ds shmbuffer</span><span class="pun">;</span><span class="pln"> 
+  </span><span class="typ">int</span><span class="pln"> segment_size</span><span class="pun">;</span><span class="pln"> 
+  </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> shared_segment_size </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x6400</span><span class="pun">;</span><span class="pln"> 
+
+  </span><span class="com">/* Allocate a shared memory segment.  */</span><span class="pln"> 
+  segment_id </span><span class="pun">=</span><span class="pln"> shmget </span><span class="pun">(</span><span class="pln">IPC_PRIVATE</span><span class="pun">,</span><span class="pln"> shared_segment_size</span><span class="pun">,</span><span class="pln"> 
+                 IPC_CREAT </span><span class="pun">|</span><span class="pln"> IPC_EXCL </span><span class="pun">|</span><span class="pln"> S_IRUSR </span><span class="pun">|</span><span class="pln"> S_IWUSR</span><span class="pun">);</span><span class="pln"> 
+  </span><span class="com">/* Attach the shared memory segment.  */</span><span class="pln"> 
+  shared_memory </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">char</span><span class="pun">*)</span><span class="pln"> shmat </span><span class="pun">(</span><span class="pln">segment_id</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln"> 
+  printf </span><span class="pun">(</span><span class="str">"shared memory attached at address %p\n"</span><span class="pun">,</span><span class="pln"> shared_memory</span><span class="pun">);</span><span class="pln"> 
+  </span><span class="com">/* Determine the segment's size. */</span><span class="pln"> 
+  shmctl </span><span class="pun">(</span><span class="pln">segment_id</span><span class="pun">,</span><span class="pln"> IPC_STAT</span><span class="pun">,</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">shmbuffer</span><span class="pun">);</span><span class="pln"> 
+  segment_size  </span><span class="pun">=</span><span class="pln">               shmbuffer</span><span class="pun">.</span><span class="pln">shm_segsz</span><span class="pun">;</span><span class="pln"> 
+  printf </span><span class="pun">(</span><span class="str">"segment size: %d\n"</span><span class="pun">,</span><span class="pln"> segment_size</span><span class="pun">);</span><span class="pln"> 
+  </span><span class="com">/* Write a string to the shared memory segment.  */</span><span class="pln"> 
+  sprintf </span><span class="pun">(</span><span class="pln">shared_memory</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Hello, world."</span><span class="pun">);</span><span class="pln"> 
+  </span><span class="com">/* Detach the shared memory segment.  */</span><span class="pln"> 
+  shmdt </span><span class="pun">(</span><span class="pln">shared_memory</span><span class="pun">);</span><span class="pln"> 
+
+  </span><span class="com">/* Reattach the shared memory segment, at a different address.  */</span><span class="pln"> 
+  shared_memory </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">char</span><span class="pun">*)</span><span class="pln"> shmat </span><span class="pun">(</span><span class="pln">segment_id</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">void</span><span class="pun">*)</span><span class="pln"> </span><span class="lit">0x5000000</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln"> 
+  printf </span><span class="pun">(</span><span class="str">"shared memory reattached at address %p\n"</span><span class="pun">,</span><span class="pln"> shared_memory</span><span class="pun">);</span><span class="pln"> 
+  </span><span class="com">/* Print out the string from shared memory.  */</span><span class="pln"> 
+  printf </span><span class="pun">(</span><span class="str">"%s\n"</span><span class="pun">,</span><span class="pln"> shared_memory</span><span class="pun">);</span><span class="pln"> 
+  </span><span class="com">/* Detach the shared memory segment.  */</span><span class="pln"> 
+  shmdt </span><span class="pun">(</span><span class="pln">shared_memory</span><span class="pun">);</span><span class="pln"> 
+
+  </span><span class="com">/* Deallocate the shared memory segment.  */</span><span class="pln"> 
+  shmctl </span><span class="pun">(</span><span class="pln">segment_id</span><span class="pun">,</span><span class="pln"> IPC_RMID</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln"> 
+
+  </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> 
+</span><span class="pun">}</span><span class="pln"> </span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/36244366" title="short permalink to this answer" class="short-link" id="link-post-36244366">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/36244366/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2016-03-27 06:01:50Z" class="relativetime">Mar 27 at 6:01</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4422856/ahmed-hamdy"><div class="gravatar-wrapper-32"><img src="https://graph.facebook.com/100000612069199/picture?type=large" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4422856/ahmed-hamdy">Ahmed Hamdy</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">111</span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-36244366" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-36244366" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="37255723"></a>
+<div id="answer-37255723" class="answer" data-answerid="37255723" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="37255723">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here's a mmap example:</p>
+
+<pre class="lang-c prettyprint prettyprinted"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/mman.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/types.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/stat.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;fcntl.h&gt;</span><span class="pln">
+
+</span><span class="com">/*
+ * pvtmMmapAlloc - creates a memory mapped file area.  
+ * The return value is a page-aligned memory value, or NULL if there is a failure.
+ * Here's the list of arguments:
+ * @mmapFileName - the name of the memory mapped file
+ * @size - the size of the memory mapped file (should be a multiple of the system page for best performance)
+ * @create - determines whether or not the area should be created.
+ */</span><span class="pln">
+</span><span class="kwd">void</span><span class="pun">*</span><span class="pln"> pvtmMmapAlloc </span><span class="pun">(</span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> mmapFileName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">size_t</span><span class="pln"> size</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> create</span><span class="pun">)</span><span class="pln">  
+</span><span class="pun">{</span><span class="pln">      
+  </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> retv </span><span class="pun">=</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                              
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">create</span><span class="pun">)</span><span class="pln">                                                                                         
+  </span><span class="pun">{</span><span class="pln">                                                                                                   
+    </span><span class="typ">mode_t</span><span class="pln"> origMask </span><span class="pun">=</span><span class="pln"> umask</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln">                                                                       
+    </span><span class="typ">int</span><span class="pln"> mmapFd </span><span class="pun">=</span><span class="pln"> open</span><span class="pun">(</span><span class="pln">mmapFileName</span><span class="pun">,</span><span class="pln"> O_CREAT</span><span class="pun">|</span><span class="pln">O_RDWR</span><span class="pun">,</span><span class="pln"> </span><span class="lit">00666</span><span class="pun">);</span><span class="pln">                                           
+    umask</span><span class="pun">(</span><span class="pln">origMask</span><span class="pun">);</span><span class="pln">                                                                                  
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mmapFd </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln">                                                                                   
+    </span><span class="pun">{</span><span class="pln">                                                                                                 
+      perror</span><span class="pun">(</span><span class="str">"open mmapFd failed"</span><span class="pun">);</span><span class="pln">                                                                   
+      </span><span class="kwd">return</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                    
+    </span><span class="pun">}</span><span class="pln">                                                                                                 
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">((</span><span class="pln">ftruncate</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">,</span><span class="pln"> size</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">))</span><span class="pln">               
+    </span><span class="pun">{</span><span class="pln">                                                                                                 
+      </span><span class="typ">int</span><span class="pln"> result </span><span class="pun">=</span><span class="pln"> lseek</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">,</span><span class="pln"> size </span><span class="pun">-</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> SEEK_SET</span><span class="pun">);</span><span class="pln">               
+      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">result </span><span class="pun">==</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span><span class="pln">                                                                               
+      </span><span class="pun">{</span><span class="pln">                                                                                               
+        perror</span><span class="pun">(</span><span class="str">"lseek mmapFd failed"</span><span class="pun">);</span><span class="pln">                                                                
+        close</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">);</span><span class="pln">                                                                                
+        </span><span class="kwd">return</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                  
+      </span><span class="pun">}</span><span class="pln">                                                                                               
+
+      </span><span class="com">/* Something needs to be written at the end of the file to                                      
+       * have the file actually have the new size.                                                    
+       * Just writing an empty string at the current file position will do.                           
+       * Note:                                                                                        
+       *  - The current position in the file is at the end of the stretched                           
+       *    file due to the call to lseek().  
+              *  - The current position in the file is at the end of the stretched                    
+       *    file due to the call to lseek().                                                          
+       *  - An empty string is actually a single '\0' character, so a zero-byte                       
+       *    will be written at the last byte of the file.                                             
+       */</span><span class="pln">                                                                                             
+      result </span><span class="pun">=</span><span class="pln"> write</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">,</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">);</span><span class="pln">                                                                  
+      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">result </span><span class="pun">!=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln">                                                                                
+      </span><span class="pun">{</span><span class="pln">                                                                                               
+        perror</span><span class="pun">(</span><span class="str">"write mmapFd failed"</span><span class="pun">);</span><span class="pln">                                                                
+        close</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">);</span><span class="pln">                                                                                
+        </span><span class="kwd">return</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                  
+      </span><span class="pun">}</span><span class="pln">                                                                                               
+      retv  </span><span class="pun">=</span><span class="pln">  mmap</span><span class="pun">(</span><span class="pln">NULL</span><span class="pun">,</span><span class="pln"> size</span><span class="pun">,</span><span class="pln">   
+                  PROT_READ </span><span class="pun">|</span><span class="pln"> PROT_WRITE</span><span class="pun">,</span><span class="pln"> MAP_SHARED</span><span class="pun">,</span><span class="pln"> mmapFd</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln">                                     
+
+      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">retv </span><span class="pun">==</span><span class="pln"> MAP_FAILED </span><span class="pun">||</span><span class="pln"> retv </span><span class="pun">==</span><span class="pln"> NULL</span><span class="pun">)</span><span class="pln">                                                         
+      </span><span class="pun">{</span><span class="pln">                                                                                               
+        perror</span><span class="pun">(</span><span class="str">"mmap"</span><span class="pun">);</span><span class="pln">                                                                               
+        close</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">);</span><span class="pln">                                                                                
+        </span><span class="kwd">return</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                  
+      </span><span class="pun">}</span><span class="pln">                                                                                               
+    </span><span class="pun">}</span><span class="pln">                                                                                                 
+  </span><span class="pun">}</span><span class="pln">                                                                                                   
+  </span><span class="kwd">else</span><span class="pln">                                                                                                
+  </span><span class="pun">{</span><span class="pln">                                                                                                   
+    </span><span class="typ">int</span><span class="pln"> mmapFd </span><span class="pun">=</span><span class="pln"> open</span><span class="pun">(</span><span class="pln">mmapFileName</span><span class="pun">,</span><span class="pln"> O_RDWR</span><span class="pun">,</span><span class="pln"> </span><span class="lit">00666</span><span class="pun">);</span><span class="pln">                                                   
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mmapFd </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln">                                                                                   
+    </span><span class="pun">{</span><span class="pln">                                                                                                 
+      </span><span class="kwd">return</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                    
+    </span><span class="pun">}</span><span class="pln">                                                                                                 
+    </span><span class="typ">int</span><span class="pln"> result </span><span class="pun">=</span><span class="pln"> lseek</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> SEEK_END</span><span class="pun">);</span><span class="pln">                                                          
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">result </span><span class="pun">==</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span><span class="pln">                                                                                 
+    </span><span class="pun">{</span><span class="pln">                                                                                                 
+      perror</span><span class="pun">(</span><span class="str">"lseek mmapFd failed"</span><span class="pun">);</span><span class="pln">                  
+      close</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">);</span><span class="pln">                                                                                  
+      </span><span class="kwd">return</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                    
+    </span><span class="pun">}</span><span class="pln">                                                                                                 
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">result </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln">                                                                                  
+    </span><span class="pun">{</span><span class="pln">                                                                                                 
+      perror</span><span class="pun">(</span><span class="str">"The file has 0 bytes"</span><span class="pun">);</span><span class="pln">                           
+      close</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">);</span><span class="pln">                                                                                  
+      </span><span class="kwd">return</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                    
+    </span><span class="pun">}</span><span class="pln">                                                                                              
+    retv  </span><span class="pun">=</span><span class="pln">  mmap</span><span class="pun">(</span><span class="pln">NULL</span><span class="pun">,</span><span class="pln"> size</span><span class="pun">,</span><span class="pln">     
+                PROT_READ </span><span class="pun">|</span><span class="pln"> PROT_WRITE</span><span class="pun">,</span><span class="pln"> MAP_SHARED</span><span class="pun">,</span><span class="pln"> mmapFd</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln">                                       
+
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">retv </span><span class="pun">==</span><span class="pln"> MAP_FAILED </span><span class="pun">||</span><span class="pln"> retv </span><span class="pun">==</span><span class="pln"> NULL</span><span class="pun">)</span><span class="pln">                                                           
+    </span><span class="pun">{</span><span class="pln">                                                                                                 
+      perror</span><span class="pun">(</span><span class="str">"mmap"</span><span class="pun">);</span><span class="pln">                                                                                 
+      close</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">);</span><span class="pln">                                                                                  
+      </span><span class="kwd">return</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln">                                                                                    
+    </span><span class="pun">}</span><span class="pln">                                                                                                 
+
+    close</span><span class="pun">(</span><span class="pln">mmapFd</span><span class="pun">);</span><span class="pln">                                                                                    
+
+  </span><span class="pun">}</span><span class="pln">                                                                                                   
+  </span><span class="kwd">return</span><span class="pln"> retv</span><span class="pun">;</span><span class="pln">                                                                                        
+</span><span class="pun">}</span><span class="pln">                                                                                                     </span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/37255723" title="short permalink to this answer" class="short-link" id="link-post-37255723">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/37255723/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2016-05-16 13:58:11Z" class="relativetime">May 16 at 13:58</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/895295/leo"><div class="gravatar-wrapper-32"><img src="./How to use shared memory with Linux in C - Stack Overflow_files/9GTgv.gif" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/895295/leo">Leo</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">378</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="13 bronze badges"><span class="badge3"></span><span class="badgecount">13</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-37255723" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-37255723" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/5656530/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="5656530">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.co.in/">
+							<h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.settings.snippets.snippetsEnabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="a62081a7ee6d06698dcea80d0900029e">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f5656530%2fhow-to-use-shared-memory-with-linux-in-c%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Email and Password</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid">
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="hidden" name="use-google" class="use-google" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown">
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fstackoverflow.com%2fquestions%2f5656530%2fhow-to-use-shared-memory-with-linux-in-c%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" /&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" class="btn-clear discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/c" class="post-tag" title="show questions tagged &#39;c&#39;" rel="tag">c</a> <a href="http://stackoverflow.com/questions/tagged/linux" class="post-tag" title="show questions tagged &#39;linux&#39;" rel="tag">linux</a> <a href="http://stackoverflow.com/questions/tagged/fork" class="post-tag" title="show questions tagged &#39;fork&#39;" rel="tag">fork</a> <a href="http://stackoverflow.com/questions/tagged/shared-memory" class="post-tag" title="show questions tagged &#39;shared-memory&#39;" rel="tag">shared-memory</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2011-04-13 22:41:03Z"><b>5 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>126154 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c?lastactivity" class="lastactivity-link" title="2016-05-16 13:58:11Z">5 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1331832164",[5,17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1331832164"><a href="http://engine.adzerk.net/r?e=eyJhdiI6MTIwMzUwLCJhdCI6NSwiYnQiOjAsImNtIjo0ODk5NzEsImNoIjoxMTc4LCJjayI6e30sImNyIjoxNzA4MDcyLCJkaSI6IjQxMjBhYmEwZTgyZDQzZWM5Y2IxYzEwZWIzNWVjMzA2IiwiZG0iOjEsImZjIjoyMDI5NTcwLCJmbCI6MjQyODE4NCwiaXAiOiIxMDYuMC4zNi4xMTciLCJrdyI6ImMsbGludXgsZm9yayxzaGFyZWQtbWVtb3J5IiwibWsiOiJmb3JrIiwibnciOjIyLCJwYyI6OS4wOCwiZWMiOjkuMDgsInByIjo3NjUsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jby5pbi8iLCJzdCI6ODI3NywidWsiOiJ1ZTEtNzc0MjhmYTAwN2Q3NGU1NmFkYjEyYjBmNWEwNWE5NGIiLCJ6biI6NDUsInRzIjoxNDc2OTc4MzY3OTEzLCJiZiI6dHJ1ZSwicG4iOiJhZHplcmsxMzMxODMyMTY0IiwidXIiOiJodHRwczovL3d3dy5qYW5lc3RyZWV0LmNvbS9zeXN0ZW1zLyJ9&amp;s=vSaAtrj8sNl6cdnNRwdtwzGRoww" rel="nofollow" target="_blank" title=""><img src="./How to use shared memory with Linux in C - Stack Overflow_files/af4c1a02d6db4df6bde1e3b9b61c7b96.png" title="" alt="" border="0" width="300" height="250"></a><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="http://engine.adzerk.net/i.gif?e=eyJhdiI6MTIwMzUwLCJhdCI6NSwiYnQiOjAsImNtIjo0ODk5NzEsImNoIjoxMTc4LCJjayI6e30sImNyIjoxNzA4MDcyLCJkaSI6IjQxMjBhYmEwZTgyZDQzZWM5Y2IxYzEwZWIzNWVjMzA2IiwiZG0iOjEsImZjIjoyMDI5NTcwLCJmbCI6MjQyODE4NCwiaXAiOiIxMDYuMC4zNi4xMTciLCJrdyI6ImMsbGludXgsZm9yayxzaGFyZWQtbWVtb3J5IiwibWsiOiJmb3JrIiwibnciOjIyLCJwYyI6OS4wOCwiZWMiOjkuMDgsInByIjo3NjUsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jby5pbi8iLCJzdCI6ODI3NywidWsiOiJ1ZTEtNzc0MjhmYTAwN2Q3NGU1NmFkYjEyYjBmNWEwNWE5NGIiLCJ6biI6NDUsInRzIjoxNDc2OTc4MzY3OTE0LCJiZiI6dHJ1ZSwicG4iOiJhZHplcmsxMzMxODMyMTY0IiwiZnEiOjB9&amp;s=656EDQiLAGlx0olBZoWTkZ4NrJg"></div>
+            <div id="hireme"></div>
+        <script>
+;(function(n){var u=Object.assign||function(n){for(var i,r,u,f,e=[],t=1;t<arguments.length;t++)e[t-1]=arguments[t];for(i=0,r=e;i<r.length;i++){u=r[i];for(f in u)n[f]=u[f]}return n},r,t,f,i;try{if(typeof[].indexOf!="function")return;if(r=["stackoverflow.com","serverfault.com","careers.stackoverflow.com","blog.codinghorror.com","joelonsoftware.com","www.joelonsoftware.com","talent.stackoverflow.com"],r[0]!=="*"&&r.indexOf(location.hostname)===-1)return;t=window;f=t.clc_opts?u({},window.clc_opts):{};t.clc_opts=u(n,f);void 0;t.clc_opts.autoload&&(t.clc_init=t.clc_init||[],t.clc_init.push(function(){return t.clc.load()}));i=document.createElement("script");i.async=!0;void 0;i.src=t.clc_opts.lib;document.body.appendChild(i)}catch(e){void 0}}).call(null, {"azw":true,"kt":2000,"tto":true,"autoload":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"allowed":["stackoverflow.com","serverfault.com","careers.stackoverflow.com","blog.codinghorror.com","joelonsoftware.com","www.joelonsoftware.com","talent.stackoverflow.com"],"h":"clc.stackoverflow.com","u":"//clc.stackoverflow.com/p.js","lib":"//cdn.sstatic.net/clc/clc.min.js?v=0b93ded9c111"});        </script>
+			
+
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/13274786?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">26</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/13274786/how-to-share-memory-between-process-fork?noredirect=1&amp;lq=1" class="question-hyperlink">How to share memory between process fork()?</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/21311080?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">25</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21311080/linux-shared-memory-shmget-vs-mmap?noredirect=1&amp;lq=1" class="question-hyperlink">Linux shared memory: shmget() vs mmap()?</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/14225010?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">12</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/14225010/fastest-technique-to-pass-messages-between-processes-on-linux?noredirect=1&amp;lq=1" class="question-hyperlink">Fastest technique to pass messages between processes on Linux?</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/16845125?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">7</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/16845125/c-sharing-single-class-object-between-multiple-processes?noredirect=1&amp;lq=1" class="question-hyperlink">c++ sharing single class object between multiple processes</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/26189249?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/26189249/is-it-possible-to-have-two-c-programs-access-to-the-same-memory-location?noredirect=1&amp;lq=1" class="question-hyperlink">Is it possible to have two c++ programs access to the same memory location</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/14414156?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/14414156/share-pointer-between-subprocesses?noredirect=1&amp;lq=1" class="question-hyperlink">Share pointer between subprocesses</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/26682733?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/26682733/sending-data-from-one-program-to-another-non-blocking-in-c?noredirect=1&amp;lq=1" class="question-hyperlink">Sending data from one program to another non-blocking in C</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/25544984?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/25544984/fill-in-an-array-with-fork?noredirect=1&amp;lq=1" class="question-hyperlink">Fill in an array with fork()</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/11063878?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/11063878/having-database-in-memory-c?noredirect=1&amp;lq=1" class="question-hyperlink">having database in memory - C</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/33361892?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/33361892/how-to-read-the-variable-value-from-ram?noredirect=1&amp;lq=1" class="question-hyperlink">How to read the variable value from RAM?</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/5656530?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/5670827?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">3</div></a><a href="http://stackoverflow.com/questions/5670827/child-process-hangs-when-using-shared-memory?rq=1" class="question-hyperlink">Child process hangs when using shared memory?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/9961591?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">8</div></a><a href="http://stackoverflow.com/questions/9961591/sharing-heap-memory-with-fork?rq=1" class="question-hyperlink">Sharing heap memory with fork()</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/10154766?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">1</div></a><a href="http://stackoverflow.com/questions/10154766/c-shared-memory-using-fork?rq=1" class="question-hyperlink">C shared memory using fork()</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/10613566?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">9</div></a><a href="http://stackoverflow.com/questions/10613566/how-to-find-how-much-memory-is-shared-between-forked-process-with-copy-on-write?rq=1" class="question-hyperlink">How to find how much memory is shared between forked process with copy-on-write in Linux?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/11607814?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">2</div></a><a href="http://stackoverflow.com/questions/11607814/unexpected-behavior-with-shared-memory-forking?rq=1" class="question-hyperlink">Unexpected behavior with shared memory &amp; forking?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/16380279?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="http://stackoverflow.com/questions/16380279/shared-pointer-to-an-array-in-shared-memory-pointer-doesnt-seem-shared?rq=1" class="question-hyperlink">Shared pointer to an array in shared memory, pointer doesn't seem shared?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/19203372?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/19203372/forks-and-shared-memory-not-adding-correctly?rq=1" class="question-hyperlink">Forks and Shared Memory not adding correctly</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/29871645?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">2</div></a><a href="http://stackoverflow.com/questions/29871645/munmap-anonymous-shared-memory-in-forked-child?rq=1" class="question-hyperlink">munmap anonymous shared memory in forked child</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/33093475?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/33093475/shared-memory-with-forked-child?rq=1" class="question-hyperlink">Shared memory with forked child</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/38976675?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">-2</div></a><a href="http://stackoverflow.com/questions/38976675/linux-shared-memory-between-3-processes-each-process-running-in-different-core?rq=1" class="question-hyperlink">Linux Shared memory between 3 processes (each process running in different core) in Multicore Processor/SMP</a></div>
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/78154/how-can-i-call-the-hiring-manager-when-i-dont-have-his-number" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I call the hiring manager when I don't have his number?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/334980/detecting-harmful-latex-code" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Detecting harmful LaTeX code
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-spanish" title="Spanish Language Stack Exchange"></div><a href="http://spanish.stackexchange.com/questions/18440/etymologically-why-do-ser-and-estar-exist" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:353 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Etymologically, why do "ser" and "estar" exist?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/44632/whats-the-longest-concertina-word-you-can-find" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the longest concertina word you can find?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1977081/when-to-stop-rolling-a-dice-in-a-game-where-6-loses-everything" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When to stop rolling a dice in a game where 6 loses everything
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="http://philosophy.stackexchange.com/questions/38542/what-is-the-difference-if-any-between-not-true-and-false" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the difference (if any) between "not true" and "false"?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/139992/how-to-create-a-company-culture-that-cares-about-information-security" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to create a company culture that cares about information security?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/81084/should-i-carry-my-passport-for-a-domestic-flight-in-germany" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should I carry my passport for a domestic flight in Germany
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/40151723/why-when-do-we-have-to-call-super-viewdidload" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why/when do we have to call super.ViewDidLoad?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1136409/what-is-the-dot-space-filename-command-doing-in-bash" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the 'dot space filename' command doing in bash?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div><a href="http://photo.stackexchange.com/questions/83867/why-same-product-is-looking-differently" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why same product is looking differently
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/59117/how-to-explain-the-existance-of-just-one-religion" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to explain the existance of just one religion?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/89384/would-animated-1-daggers-attacks-be-considered-magical" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Would animated +1 daggers' attacks be considered magical?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/96825/codegolf-the-permanent" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Codegolf the permanent
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/837558/where-are-sudos-insults-stored" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where are sudo's insults stored?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/89328/can-i-stop-this-homebrewed-lucky-coin-ability-from-being-exploited" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can I stop this homebrewed Lucky Coin ability from being exploited?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1136864/usb-in-computer-screen-not-working" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    USB in computer screen not working
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-sitecore" title="Sitecore Stack Exchange"></div><a href="http://sitecore.stackexchange.com/questions/1619/adding-views-vs-adds-scaffolding-and-nugets" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:664 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Adding Views - VS Adds Scaffolding and NuGets
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-christianity" title="Christianity Stack Exchange"></div><a href="http://christianity.stackexchange.com/questions/53257/what-is-the-distinction-between-justification-and-salvation-reformed-point-of" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:304 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the distinction between Justification and Salvation? (Reformed point of view)
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/32491/why-arent-there-direct-flights-connecting-honolulu-hawaii-and-london-uk" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why aren't there direct flights connecting Honolulu, Hawaii and London, UK?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-magento" title="Magento Stack Exchange"></div><a href="http://magento.stackexchange.com/questions/141750/magento-2-when-will-2-0-support-stop" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:479 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Magento 2: When will 2.0 support stop?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="http://parenting.stackexchange.com/questions/27477/what-to-do-with-my-pre-teen-daughter-who-has-been-out-of-control-since-a-severe" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What to do with my pre-teen daughter who has been out of control since a severe accident?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/44607/hexagonal-minesweeper" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Hexagonal minesweeper
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/78097/what-to-do-when-youve-put-your-co-worker-on-spot-by-being-impatient" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What to do when you've put your co-worker on spot by being impatient?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/5656530" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/5656530/ivc/f779');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/5656530/ivc/f779" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-c</div></div>
+
+
+        </div>
+    </div><script async="" src="./How to use shared memory with Linux in C - Stack Overflow_files/clc.min.js"></script>
+    <div id="footer" class="categories">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="4">
+                Technology
+            </th>
+            <th colspan="2">
+                Life / Arts
+            </th>
+            <th colspan="2">
+                Culture / Recreation
+            </th>
+            <th colspan="2">
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                        <li><a href="http://crypto.stackexchange.com/" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://codereview.stackexchange.com/" title="peer programmer code reviews">Code Review</a></li>
+                        <li><a href="http://magento.stackexchange.com/" title="users of the Magento e-Commerce platform">Magento</a></li>
+                        <li><a href="http://dsp.stackexchange.com/" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                        <li><a href="http://raspberrypi.stackexchange.com/" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                        <li><a href="http://codegolf.stackexchange.com/" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://music.stackexchange.com/" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (8)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://ell.stackexchange.com/" title="speakers of other languages learning English">English Language Learners</a></li>
+                        <li><a href="http://japanese.stackexchange.com/" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                        <li><a href="http://anime.stackexchange.com/" title="anime and manga fans">Anime &amp; Manga</a></li>
+                        <li><a href="http://mechanics.stackexchange.com/" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (17)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                        <li><a href="http://cs.stackexchange.com/" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://philosophy.stackexchange.com/" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (3)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://talent.stackoverflow.com/">Stack Overflow Talent</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2016 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2016.10.20.4121
+            </div>
+                </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    
+    
+        
+        ados.run.push(function () {
+                setTimeout(function () { $("#adzerk-user-match").remove(); }, window.AUMIframeDone ? 0 : 2000);
+                ados_setKeywords('c,linux,fork,shared-memory');; ados_load();
+        });   
+        
+</script>
+
+    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            
+            ga('create', 'UA-5620270-1');
+            ga('set', 'dimension2', '|c|linux|fork|shared-memory|');             ga('send', 'pageview');
+        
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script>
+        
+    
+            <script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+    
+<img src="http://clc.stackoverflow.com/to.gif" style="display: none;"></body></html>

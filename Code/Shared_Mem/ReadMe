@@ -1,0 +1,12 @@
+Author: Mohit M Ingale
+code:to demostarte use f\of shared memory
+/* this program demonstartes the use of shared memory
+we use api's to create shared memory,
+attach it to the address space,
+wirte or read from shared memory
+then deallocate the shared memoryfor demostration purpose the code for dealloacting the memory is commented
+*/
+
+this code dosnot give any warranty
+
+thank you
